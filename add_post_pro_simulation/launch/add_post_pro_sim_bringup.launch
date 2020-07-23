@@ -1,0 +1,67 @@
+<launch>
+    <arg name="sensor_package" default="multisensor"/>
+    <arg name="sim" default="true"/>
+    <arg name="direct_joint_control" default="false"/>
+
+    <arg name="x" default="0"/>
+    <arg name="y" default="0"/>
+    <arg name="z" default="0"/>
+    
+    <!-- Override robot_name argument -->
+    <arg name="robot_name" default="add_post_pro_robot" />
+
+    <env name="GAZEBO_MODEL_PATH" value="$(find add_post_pro_simulation)/gazebo_models/"/>
+
+    <arg name="load_robot_description" default="true"/>
+    <arg name="robot_description" default="$(arg robot_name)_description" />
+    <arg name="world_path" default="$(find add_post_pro_simulation)/world/add_post_pro.world"/>
+    <arg name="config_name" default="$(find add_post_pro_bringup)/rviz/add_post_pro_default.rviz"/>
+    <arg name="x" default="-0.01"/>
+    <arg name="y" default="0"/>
+    <arg name="z" default="0.0925"/>
+
+    <!-- "box" or "turntable" -->
+    <arg name="processing_phase" default="box"/>
+
+    <group if="$(arg direct_joint_control)">
+        <include file="$(find add_post_pro_config)/launch/move_group.launch">
+          <arg name="publish_monitored_planning_scene" value="true" />
+
+        </include>
+    </group>  
+
+    <include file="$(find denso_robot_gazebo)/launch/denso_robot_gazebo.launch">
+      <arg name="world_path" value="$(arg world_path)" />
+      <arg name="robot_name" value="$(arg robot_name)" />
+      <arg name="x" value="$(arg x)"/>
+      <arg name="y" value="$(arg y)"/>
+      <arg name="z" value="$(arg z)"/>
+    </include>
+
+    <param if="$(arg load_robot_description)" name="$(arg robot_description)" command="xacro '$(find add_post_pro_simulation)/urdf/add_post_pro_robot.urdf.xacro'" />
+
+    <!-- Robot description argument -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+      <arg name="world_name" value="$(arg world_path)"/>
+      <arg name="verbose" value="true"/>
+    </include>
+    
+    <!-- Load the URDF, SRDF and other .yaml configuration files on the param server -->
+    <param name="robot_description" command="xacro  '$(find add_post_pro_simulation)/urdf/$(arg robot_name).urdf.xacro'"/>
+
+    <arg name="gui" default="true"/>
+    <param name="use_gui" value="$(arg gui)"/>
+
+
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model $(arg robot_name) -x $(arg x) -y $(arg y) -z $(arg z)" />
+
+    <rosparam file="$(find denso_robot_descriptions)/$(arg robot_description)/denso_robot_control.yaml" command="load" />
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen"
+    ns="/$(arg robot_name)" args="joint_state_controller arm_controller" />
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" 
+          type="robot_state_publisher" respawn="false" output="screen">
+      <remap from="/joint_states" to="/$(arg robot_name)/joint_states" />
+    </node>
+
+</launch>

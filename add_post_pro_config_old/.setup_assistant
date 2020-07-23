@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: ""
+    relative_path: /home/tomasz/metrology/src/metrology_robot/metrology.urdf.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/metrology_robot.srdf
+  CONFIG:
+    author_name: Tomasz Swierzewski
+    author_email: tswierze@andrew.cmu.edu
+    generated_timestamp: 1590519762

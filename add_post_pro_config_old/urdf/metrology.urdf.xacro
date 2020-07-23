@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot name="metrology_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename="$(find denso_robot_descriptions)/vs6577_description/urdf/vs6577.urdf.xacro"/>
+    <xacro:include filename="$(find turntable)/urdf/turntable.urdf.xacro"/>
+    <!-- <link name="world"/>
+
+    <xacro:vs6577 parent="world">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </xacro:vs6577> -->
+    <xacro:turntable suffix="1" parent="world">
+        <origin xyz ="0.5 0 .2" rpy="0 0 0"/>
+    </xacro:turntable>
+
+</robot>
