@@ -1,8 +1,5 @@
 <launch>
-    <arg name="sensor_package" default="multisensor"/>
     <arg name="sim" default="true"/>
-
-    <env name="GAZEBO_MODEL_PATH" value="$(find add_post_pro_simulation)/gazebo_models/"/>
 
     <arg name="world_path" default="$(find add_post_pro_simulation)/world/add_post_pro.world"/>
     <arg name="config_name" default="$(find add_post_pro_bringup)/rviz/add_post_pro_default.rviz"/>
@@ -17,6 +14,7 @@
     <arg name="robot_name" value="add_post_pro_robot"/>
     <arg name="load_robot_description" default="true"/>
     <arg name="robot_description" default="robot_description"/>
+    
     <!-- Publish joint states -->
     <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
         <param name="use_gui" value="false"/>
@@ -32,13 +30,13 @@
         <arg name="robot_description" value="$(arg robot_description)"/>
         <arg name="robot_name" value="$(arg robot_name)"/>
         <arg name="world_path" value="$(arg world_path"/>
-        <arg name="x" default="-0.01"/>
-        <arg name="y" default="0"/>
-        <arg name="z" default="0.0925"/>
+        <arg name="x" value="$(arg x)"/>
+        <arg name="y" value="$(arg y)"/>
+        <arg name="z" value="$(arg z)"/>
     </include>
 
 
-    <include file="$(find depowdering_bringup)/launch/realsense.launch">
+    <include file="$(find add_post_pro_bringup)/launch/realsense.launch">
         <arg name="sim" value="$(arg sim)"/>
     </include>
     <!-- <include file="$(find add_post_pro_config)/launch/moveit_rviz.launch">
