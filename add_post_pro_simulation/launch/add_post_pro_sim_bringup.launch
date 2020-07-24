@@ -1,6 +1,4 @@
 <launch>
-    <arg name="sensor_package" default="multisensor"/>
-    <arg name="sim" default="true"/>
     <arg name="direct_joint_control" default="false"/>
 
     <!-- Override robot_name argument -->
@@ -19,12 +17,9 @@
     <!-- "box" or "turntable" -->
     <arg name="processing_phase" default="box"/>
 
-    <group if="$(arg direct_joint_control)">
-        <include file="$(find add_post_pro_config)/launch/move_group.launch">
-          <arg name="publish_monitored_planning_scene" value="true" />
-
-        </include>
-    </group>  
+      <include file="$(find add_post_pro_config)/launch/move_group.launch">
+        <arg name="publish_monitored_planning_scene" value="true" />
+      </include>
 
     <!-- <include file="$(find denso_robot_gazebo)/launch/denso_robot_gazebo.launch">
       <arg name="world_path" value="$(arg world_path)" />
@@ -51,7 +46,8 @@
 
     <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model $(arg robot_name) -x $(arg x) -y $(arg y) -z $(arg z)" />
 
-    <rosparam file="$(find add_post_pro_config)/config/add_post_pro_control.yaml" command="load" />
+    <!-- <rosparam file="$(find add_post_pro_simulation)/config/add_post_pro_control.yaml" command="load" /> -->
+    <rosparam file="$(find add_post_pro_config)/config/add_post_pro_controllers.yaml" command="load"/>
     <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen"
     ns="/$(arg robot_name)" args="joint_state_controller arm_controller turntable_controller" />
 
