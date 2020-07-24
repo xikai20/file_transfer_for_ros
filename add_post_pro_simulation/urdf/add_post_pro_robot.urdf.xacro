@@ -66,8 +66,7 @@
     </transmission>
     <gazebo>
         <plugin filename="libgazebo_ros_control.so" name="gazebo_ros_control">
-            <robotNamespace>/vs6577</robotNamespace>
-            <legacyModeNS>true</legacyModeNS>
+            <robotNamespace>/add_post_pro_robot</robotNamespace>
         </plugin>
     </gazebo>
     <link name="world" />
