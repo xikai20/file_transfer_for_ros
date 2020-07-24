@@ -3,7 +3,7 @@
     This is a format for representing semantic information about the robot structure.
     A URDF file must exist for this robot as well, where the joints and the links that are referenced are defined
 -->
-<robot name="multisensor_vs6577">
+<robot name="add_post_pro_robot">
     <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
     <!--LINKS: When a link is specified, the parent joint of that link (if it exists) is automatically included-->
     <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
@@ -17,18 +17,6 @@
         <joint name="joint_4" />
         <joint name="joint_5" />
         <joint name="joint_6" />
-        <joint name="end_effector_magnet" />
-        <joint name="end_effector_depstech_holder" />
-        <joint name="camera_link_joint" />
-        <joint name="end_effector_scanner_holder" />
-        <joint name="end_effector_scanner" />
-        <joint name="laser_joint" />
-        <joint name="realsense_joint" />
-        <joint name="color_joint" />
-        <joint name="depth_joint" />
-        <joint name="ired1_joint" />
-        <joint name="ired2_joint" />
-        <joint name="end_effector_mount" />
     </group>
     <group name="turntable">
         <joint name="turntable_joint" />
