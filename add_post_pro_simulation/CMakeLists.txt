@@ -59,9 +59,9 @@ find_package(catkin REQUIRED COMPONENTS
 add_service_files(
   FILES
   ConversionRequest.srv
-  MetSpawnModel.srv
-  MetDeleteModel.srv
-  MetListModels.srv
+  APPSpawnModel.srv
+  APPDeleteModel.srv
+  APPListModels.srv
 )
 
 ## Generate actions in the 'action' folder
