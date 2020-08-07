@@ -22,6 +22,7 @@
     </include>
     <node name="create_gaz_model" pkg="add_post_pro_simulation" type="create_gaz_model.py"/>
     <node name="spawn_object" pkg="add_post_pro_simulation" type="spawn_object.py"/>
+    <node name="laser_processor" pkg="pcl_sensor_data" type="laser_processor"/>
     <!-- <include file="$(find denso_robot_gazebo)/launch/denso_robot_gazebo.launch">
       <arg name="world_path" value="$(arg world_path)" />
       <arg name="robot_name" value="$(arg robot_name)" />
