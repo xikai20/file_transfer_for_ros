@@ -2,9 +2,10 @@
 
 ## __**Project Compilation Instructions**__
  1. Find a location where you'd like to install the project to.
- 2. Run the following command:
+ 2. Run the following commands:
  `git clone https://github.com/tswie/add_post_pro.git`
- 3. This will create a folder named 'add_post_pro' and download the project packages into it. 
+ `git clone https://github.com/tswie/pal-robotics/gazebo_ros_link_attacher.git`
+ 3. This will create a folder named 'add_post_pro' and download the project packages into it in addition to the 'gazebo_ros_link_attacher' package.
  4. Next, we will set up rosdep.
     1. If you haven't already, type the following command:
    `sudo rosdep init`
