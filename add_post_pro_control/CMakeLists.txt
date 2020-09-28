@@ -11,12 +11,12 @@ find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
   message_generation
   message_runtime
-  moveit-core
+  moveit_core
   roscpp
   rospy
   std_msgs
   tf
-  tf-conversions
+  tf_conversions
   tf2
 )
 
