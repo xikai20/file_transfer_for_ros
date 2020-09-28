@@ -95,7 +95,7 @@ These nodes and services are the ones that have been created for this project an
 
 ## __**Test bunny object on turntable**__
 1. `roslaunch add_post_pro_bringup add_post_pro_bringup.launch`
-2.    ```rosservice call /add_post_pro_simulation/spawn_model "model_name: 'test_bunny'  
+2.    ``` rosservice call /add_post_pro_simulation/spawn_model "model_name: 'test_bunny'  
     instance_name: 'test_bunny'  
     turntable: true  
     pose:  
