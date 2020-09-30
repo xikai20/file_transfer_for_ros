@@ -18,7 +18,6 @@
   <run_depend>denso_robot_core_test</run_depend>
   <run_depend>denso_robot_descriptions</run_depend>
   <run_depend>denso_robot_gazebo</run_depend>
-  <run_depend>denso_robot_moveit_config</run_depend>
 
   <export>
     <metapackage />

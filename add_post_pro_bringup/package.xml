@@ -73,7 +73,6 @@
   <build_export_depend>std_msgs</build_export_depend>
   <build_export_depend>message_generation</build_export_depend>
 
-  <exec_depend>realsense-ros</exec_depend>
   <exec_depend>realsense2_camera</exec_depend>
   <exec_depend>denso_robot_control</exec_depend>
   <exec_depend>denso_robot_bringup</exec_depend>
