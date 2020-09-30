@@ -118,7 +118,7 @@ generate_messages(
 catkin_package(
 #  INCLUDE_DIRS include
   LIBRARIES depowdering_bringup
-  CATKIN_DEPENDS denso_robot_control realsense-ros roscpp rospy std_msgs sensor_msgs
+  CATKIN_DEPENDS denso_robot_control roscpp rospy std_msgs sensor_msgs
   DEPENDS system_lib
 )
 
