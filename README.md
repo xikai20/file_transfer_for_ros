@@ -17,6 +17,7 @@
    `rosdep install --from-paths src --ignore-src -r -y`
 
  5. Now, we will install the dependencies for the scanCONTROL 2900-100 laser profile scanner.
+    **(SKIP IF ON SIMULATOR_ONLY BRANCH)**
     1. In a different location than your add_post_pro folder, download the following repository:
    `git clone https://github.com/tswie/depowdering_microepsilon_install.git`
     2. Follow the instructions inside to install the dependencies.
