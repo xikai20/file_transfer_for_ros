@@ -1,0 +1,3 @@
+[submodule "connect_node/src/connect_node/src"]
+	path = connect_node/src/connect_node/src
+	url = https://github.com/tswie/add_post_pro.git
