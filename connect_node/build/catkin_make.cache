@@ -1,0 +1,2 @@
+moving_file
+-DCATKIN_DEVEL_PREFIX=/home/cerlab/XK/connect_node/devel -DCMAKE_INSTALL_PREFIX=/home/cerlab/XK/connect_node/install -G Unix Makefiles
