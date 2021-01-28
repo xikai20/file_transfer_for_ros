@@ -1,0 +1,73 @@
+<launch>
+    <arg name="sim" default="true"/>
+
+    <arg name="world_path" default="$(find add_post_pro_simulation)/world/add_post_pro.world"/>
+    <arg name="config_name" default="$(find add_post_pro_bringup)/rviz/add_post_pro_default.rviz"/>
+    <arg name="x" default="-0.01"/>
+    <arg name="y" default="0"/>
+    <arg name="z" default="0.0925"/>
+
+    <!-- "box" or "turntable" -->
+    <arg name="processing_phase" default="box"/>
+    <arg name="direct_joint_control" default="false"/>
+    <arg name="denso_robot" default="vs6577"/>
+    <arg name="robot_name" default="add_post_pro_robot"/>
+    <arg name="load_robot_description" default="true"/>
+    <arg name="robot_description" default="robot_description"/>
+    
+    <!-- Publish joint states -->
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+        <param name="use_gui" value="false"/>
+        <param name="publish_frequency" type="double" value="125.0" />
+        <rosparam param="source_list" subst_value = "true">[/$(arg robot_name)/joint_states]</rosparam>
+    </node>
+
+    <!-- Run gazebo and moveit -->
+    <include if="$(arg sim)" file="$(find add_post_pro_simulation)/launch/add_post_pro_sim_bringup.launch">
+        <arg name="direct_joint_control" value="$(arg direct_joint_control)"/>
+        <arg name="processing_phase" value="$(arg processing_phase)"/>
+        <arg name="load_robot_description" value="$(arg load_robot_description)"/>
+        <arg name="robot_description" value="$(arg robot_description)"/>
+        <arg name="robot_name" value="add_post_pro_robot"/>
+        <arg name="world_path" value="$(arg world_path)"/>
+        <arg name="x" value="$(arg x)"/>
+        <arg name="y" value="$(arg y)"/>
+        <arg name="z" value="$(arg z)"/>
+    </include>
+
+    <include file="$(find add_post_pro_config)/launch/moveit_rviz.launch">
+        <arg name="rviz_config" default="$(arg config_name)"/>
+    </include>
+
+    <include unless="$(arg sim)" file="$(find add_post_pro_bringup)/launch/add_post_pro_live_bringup.launch">
+        <arg name="ip_address" value="$(arg ip_address)"/>
+        <arg name="denso_robot" value="$(arg denso_robot)"/>
+        <!-- <arg name="robot_name" value="add_post_pro_robot_vs050"/> -->
+    </include>
+    <!-- <include file="$(find add_post_pro_config)/launch/moveit_rviz.launch">
+        <arg name="config" value="true"/>
+        <arg name="config_name" default="$(arg config_name)"/>
+    </include> -->
+</launch>
+
+<!-- 
+    <include file="$(find denso_robot_bringup)/launch/vs6577_bringup.launch">
+        <arg name="sim" default="$(arg sim)"/>
+        <arg name="world_path" value="$(arg world_path)"/>
+        <arg name="config_name" value="$(arg config_name)"/>
+    </include> -->
+
+
+            <!--   Fix this stuff later for live robot
+    <group unless="$(arg sim)">
+        <include file="$(find denso_robot_control)/launch/denso_robot_control.launch">
+        <arg name="robot_name" value="$(arg robot_name)" />
+        <arg name="ip_address" value="$(arg ip_address)" />
+        <arg name="send_format" value="$(arg send_format)" />
+        <arg name="recv_format" value="$(arg recv_format)" />
+        <arg name="xacro" value="$(arg xacro)"/>
+        </include>
+        <include file="$(find denso_robot_moveit_config)/../real_$(arg sensor)_robot_config/launch/move_group.launch">
+        <arg name="publish_monitored_planning_scene" value="true" />
+        </include>
+    </group>   -->
